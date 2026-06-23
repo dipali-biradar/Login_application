@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+sqlalchemy>=2.0      # The industry standard ORM for Python
+asyncpg              # Super fast, async database driver for PostgreSQL
+pydantic-settings    # For managing database URLs and environment secrets safely
