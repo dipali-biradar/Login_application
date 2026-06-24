@@ -104,6 +104,34 @@ const deactivateUser = async (id) => {
   }
 };
 
+// activate user
+const activeUSer=async(id)=>{
+  try{
+    axios.patch(
+      `http://127.0.0.1:8000/admin/users/${id}/activate`,
+      {},
+      {
+        headers:{
+          Authorization:`Bearer ${token}`
+        },
+      }
+    );
+
+    fetchUsers();
+
+    Swal.fire({
+      icon: "success",
+      title: "Activated!",
+      text: "User has been activated successfully.",
+      timer: 1500,
+      showConfirmButton: false,
+    });
+
+  } catch (error) {
+    console.log(error.response?.data || error.message);
+  }
+};
+
 const confirmDeactivate = async (id) => {
   const result = await Swal.fire({
     title: "Are you sure?",
@@ -123,7 +151,28 @@ const confirmDeactivate = async (id) => {
     fetchUsers();
   }, []);
 
-  const logout = () => {
+  // confirm active 
+  
+const confirmActivate = async (id) => {
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "Do you want to activate this user?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Yes, Activate",
+  });
+
+  if (result.isConfirmed) {
+    await activeUSer(id);
+  }
+};
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+const logout = () => {
     authService.logout();
     localStorage.removeItem("user");
     localStorage.removeItem("token");
@@ -159,9 +208,7 @@ const totalPages =
   <div className="dashboard-header">
     <h1>Admin Dashboard</h1>
 
-    <button className="logout-btn" onClick={logout}>
-      Logout
-    </button>
+    
     <hr/>
   </div>
 <div className="search-container">
@@ -202,7 +249,9 @@ const totalPages =
                <td>{u.role}</td>
               <td>{u.status}</td>
               <td>
-                {u.role !== "admin" && u.status === "active" && (
+                {u.role !== "admin" && (
+                  <>
+                 {u.status === "active" ?(
                   <>
                     <button  className="action-btn delete-btn" 
                     onClick={() => confirmDeactivate(u.id)}>
@@ -212,8 +261,15 @@ const totalPages =
                     <button   className="action-btn update-btn"
                      onClick={() => openEditModal(u)}>
                       Update
-                    </button>
+                    </button>                   
                   </>
+                 ):(
+                  <button className="action-btn update-btn"
+                  onClick={()=>confirmActivate(u.id)}>
+                    Activate
+                  </button>                 
+                )}
+                </>
                 )}
               </td>
             </tr>
@@ -243,6 +299,9 @@ const totalPages =
     Next
   </button>
 </div>    
+<button className="logout-btn" onClick={logout}>
+      Logout
+    </button>
       {/* MODAL (IMPORTANT: INSIDE RETURN) */}
       {editUser && (
         <div className="modal-overlay">

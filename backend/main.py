@@ -96,7 +96,8 @@ def root():
 
 @app.get("/admin/users")
 def get_all_users( 
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+     current_user:User=Depends(admin_required)
 ):
 
     users = db.query(User).all()
@@ -119,7 +120,8 @@ def get_all_users(
 def update_user(
     user_id: int,
     data: UpdateUser,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+     current_user:User=Depends(admin_required)
 ):
     user = (
         db.query(User)
@@ -162,7 +164,7 @@ def update_user(
 def deactivate_user(
     user_id: int,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: User = Depends(admin_required)
 ):
     user = db.query(User).filter(User.id == user_id).first()
 
@@ -170,17 +172,43 @@ def deactivate_user(
         raise HTTPException(status_code=404, detail="User not found")
 
     user.status = "deactive"
-    print("Status Before Commit:", user.status)
+    user.is_active=False
+
+    # print("Status Before Commit:", user.status)
     db.commit()
     db.refresh(user)
 
-    print("Status After Commit:", user.status)
+    # print("Status After Commit:", user.status)
 
     return {
         "success": True,
-        "message": "User deactivated successfully"
+        "message": "User deactivated successfully",
+        "status":user.status
     }
-    
+
+#activate users
+@app.patch("/admin/users/{user_id}/activate")
+def activate_user(
+    user_id:int,
+    db:Session=Depends(get_db),
+    current_user:User=Depends(admin_required)
+):
+    user =db.query(User).filter(User.id==user_id).first()
+    if not user:
+        raise HTTPException(status_code=404,detail="USer not found")
+
+    user.status="active"
+    user.is_active=True
+
+    db.commit()
+    db.refresh(user)
+
+    return {
+        "success":True,
+        "message":"User Activated Successfully",
+        "status":user.status
+    }
+
 #  REGISTER 
 @app.post("/register")
 def register(user: RegisterUser, db: Session = Depends(get_db)):
