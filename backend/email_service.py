@@ -6,18 +6,24 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+from utils.logger import logger
+
 SMTP_EMAIL = os.getenv("SMTP_EMAIL")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 if not SMTP_EMAIL or not SMTP_PASSWORD:
+    logger.error("SMTP credentials not set in environment variables")
     raise ValueError("SMTP credentials not set in environment variables")
+
+logger.info(f"Email service initialized with SMTP email: {SMTP_EMAIL}")
 
 
 # VERIFY EMAIL
 
 
 def send_verification_email(email: str, token: str):
+    logger.info("Entering send_verification_email()")
     verify_link = f"http://127.0.0.1:8000/verify-email/{token}"
 
     msg = EmailMessage()
@@ -34,10 +40,14 @@ Click below to verify your account:
 """)
 
     try:
+        logger.info(f"Attempting to send verification email to {email}")
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
             smtp.login(SMTP_EMAIL, SMTP_PASSWORD)
             smtp.send_message(msg)
+        logger.info(f"Verification email sent successfully to {email}")
+        logger.info("Exiting send_verification_email()")
     except Exception as e:
+        logger.exception("Exception in send_verification_email()")
         raise Exception(f"Verification email failed: {str(e)}")
 
 
@@ -45,6 +55,7 @@ Click below to verify your account:
 
 
 def send_reset_email(email: str, token: str):
+    logger.info("Entering send_reset_email()")
     reset_link = f"{FRONTEND_URL}/reset-password/{token}"
 
     msg = EmailMessage()
@@ -59,9 +70,13 @@ Reset your password:
 """)
 
     try:
+        logger.info(f"Attempting to send password reset email to {email}")
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
             smtp.login(SMTP_EMAIL, SMTP_PASSWORD)
             smtp.send_message(msg)
+        logger.info(f"Password reset email sent successfully to {email}")
+        logger.info("Exiting send_reset_email()")
     except Exception as e:
+        logger.exception("Exception in send_reset_email()")
         raise Exception(f"Reset email failed: {str(e)}")
 
