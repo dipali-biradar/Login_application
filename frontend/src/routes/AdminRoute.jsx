@@ -13,8 +13,6 @@ function AdminRoute({ children }) {
   if (user.role !== "admin") {
     return <Navigate to="/dashboard" />;
   }
-
   return children;
 }
-
 export default AdminRoute;
