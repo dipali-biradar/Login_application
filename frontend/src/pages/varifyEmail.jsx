@@ -3,11 +3,9 @@ import {
   useState,
 } from "react";
 
-import { useParams }
-from "react-router-dom";
+import { useParams }from "react-router-dom";
 
-import authService
-from "../services/authService";
+import authService from "../services/authService";
 
 function VerifyEmail() {
 

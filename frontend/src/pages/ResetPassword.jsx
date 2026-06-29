@@ -1,47 +1,156 @@
-import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import authService from "../services/authService";
+import {
+useParams,
+useNavigate,
+} from "react-router-dom";
+
+import {
+resetPassword
+} from "../apis/authAPI";
+
+
 
 function ResetPassword() {
-  const { token } = useParams();
-  const navigate = useNavigate();
+const { token } = useParams();
 
-  const [password, setPassword] = useState("");
+const navigate =
+useNavigate();
 
-  const handleReset = async () => {
-    try {
-      const response = await authService.resetPassword({
+const [password, setPassword] =
+useState("");
+
+const [confirmPassword,
+setConfirmPassword] =
+useState("");
+
+const [error, setError] =
+useState("");
+
+const [loading, setLoading] =
+useState(false);
+
+const handleReset =
+async (e) => {
+
+
+  e.preventDefault();
+
+  setError("");
+
+  if (
+    password !==
+    confirmPassword
+  ) {
+    setError(
+      "Passwords do not match"
+    );
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const response =
+      await resetPassword({
         token,
-        new_password: password,
+        new_password:
+          password,
       });
 
-      if (response.data.success) {
-        alert("Password reset successful");
+    if (
+      response.data.success
+    ) {
+      alert(
+        "Password reset successful"
+      );
 
-        navigate("/login");
-      }
-    } catch (err) {
-      console.log(err);
-      alert("Reset failed");
+      navigate(
+        "/login"
+      );
+    } else {
+      setError(
+        response.data
+          .message
+      );
     }
-  };
+  } catch (err) {
+    console.error(err);
 
-  return (
-    <div>
-      <h2>Reset Password</h2>
+    setError(
+      err?.response?.data
+        ?.message ||
+      "Reset failed"
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
+
+return ( <div className="auth-container"> <div className="auth-card">
+
+
+    <h2 className="auth-title">
+      Reset Password
+    </h2>
+
+    {error && (
+      <p className="error-message">
+        {error}
+      </p>
+    )}
+
+    <form
+      className="auth-form"
+      onSubmit={
+        handleReset
+      }
+    >
       <input
+        className="auth-input"
         type="password"
         placeholder="New Password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) =>
+          setPassword(
+            e.target.value
+          )
+        }
+        required
       />
 
-      <button onClick={handleReset}>
-        Reset Password
+      <input
+        className="auth-input"
+        type="password"
+        placeholder="Confirm Password"
+        value={
+          confirmPassword
+        }
+        onChange={(e) =>
+          setConfirmPassword(
+            e.target.value
+          )
+        }
+        required
+      />
+
+      <button
+        className="auth-button"
+        type="submit"
+        disabled={loading}
+      >
+        {loading
+          ? "Resetting..."
+          : "Reset Password"}
       </button>
-    </div>
-  );
+
+    </form>
+
+  </div>
+</div>
+
+
+);
 }
 
 export default ResetPassword;

@@ -1,64 +1,118 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import authService from "../services/authService";
+
+import { forgotPassword } from "../apis/authAPI";
+
+
 
 function ForgotPassword() {
-  const navigate = useNavigate();
+const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
+const [email, setEmail] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setMessage("");
-    setError("");
+const [message, setMessage] =
+useState("");
 
-    try {
-      const res = await authService.forgotPassword({ email });
+const [error, setError] =
+useState("");
 
-      if (res.data.success) {
-        setMessage("Reset link sent to your email.");
+const [loading, setLoading] =
+useState(false);
 
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
-      } else {
-        setError(res.data.message);
-      }
-    } catch (err) {
-      console.error(err);
-      setError("Something went wrong");
-    }
-  };
+const handleSubmit = async (e) => {
+e.preventDefault();
 
-  return (
-    <div className="auth-container">
-      <div className="auth-card">
 
-        <h2 className="auth-title">Forgot Password</h2>
+setMessage("");
+setError("");
 
-        {message && <p className="success-message">{message}</p>}
-        {error && <p className="error-message">{error}</p>}
+try {
+  setLoading(true);
 
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <input
-            className="auth-input"
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+  const res =
+    await forgotPassword({
+      email,
+    });
 
-          <button className="auth-button" type="submit">
-            Send Reset Link
-          </button>
-        </form>
+  if (res.data.success) {
+    setMessage(
+      "Reset link sent to your email."
+    );
 
-      </div>
-    </div>
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
+  } else {
+    setError(
+      res.data.message
+    );
+  }
+} catch (err) {
+  console.error(err);
+
+  setError(
+    err?.response?.data?.message ||
+    "Something went wrong"
   );
+} finally {
+  setLoading(false);
+}
+
+
+};
+
+return ( <div className="auth-container"> <div className="auth-card">
+
+
+    <h2 className="auth-title">
+      Forgot Password
+    </h2>
+
+    {message && (
+      <p className="success-message">
+        {message}
+      </p>
+    )}
+
+    {error && (
+      <p className="error-message">
+        {error}
+      </p>
+    )}
+
+    <form
+      className="auth-form"
+      onSubmit={handleSubmit}
+    >
+      <input
+        className="auth-input"
+        type="email"
+        placeholder="Enter your email"
+        value={email}
+        onChange={(e) =>
+          setEmail(
+            e.target.value
+          )
+        }
+        required
+      />
+
+      <button
+        className="auth-button"
+        type="submit"
+        disabled={loading}
+      >
+        {loading
+          ? "Sending..."
+          : "Send Reset Link"}
+      </button>
+    </form>
+
+  </div>
+</div>
+
+
+);
 }
 
 export default ForgotPassword;

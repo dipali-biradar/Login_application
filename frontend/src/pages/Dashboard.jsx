@@ -1,19 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import authService from "../services/authService";
+import { useAuth } from "../context/AuthContext";
 
 function Dashboard() {
   const navigate = useNavigate();
 
-  const user = JSON.parse(
-    localStorage.getItem("user") || "null"
-  );
+  const { user, logout } = useAuth();
 
-  const logout = () => {
-    authService.logout();
-
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-
+  const handleLogout = () => {
+    logout();
     navigate("/login");
   };
 
@@ -26,14 +20,16 @@ function Dashboard() {
 
         <button
           className="logout-btn"
-          onClick={logout}
+          onClick={handleLogout}
         >
           Logout
         </button>
       </div>
 
       <div className="dashboard-card">
-      
+        <h2>
+          Welcome {user?.name}
+        </h2>
 
         <div className="user-info">
           <p>
@@ -50,8 +46,6 @@ function Dashboard() {
         </div>
 
         <hr />
-
-     
       </div>
     </div>
   );

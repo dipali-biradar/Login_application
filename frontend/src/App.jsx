@@ -9,9 +9,9 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 
 import AdminDashboard from "./pages/AdminDashboard";
-import AdminRoute from "./components/AdminRoute";
+import AdminRoute from "./routes/AdminRoute";
 
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 
 function App() {

@@ -1,344 +1,419 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import authService from "../services/authService";
-import "../pages/AdminDashboard.css";
 
 import Swal from "sweetalert2";
+import { useAuth } from "../context/AuthContext";
+
+import {
+  getUsers,
+  updateUser as updateUserAPI,
+  deactivateUser as deactivateUserAPI,
+  activateUser as activateUserAPI,
+} from "../apis/userAPI";
+
+import "../pages/AdminDashboard.css";
 
 function AdminDashboard() {
-  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
+  const { user, logout } = useAuth();
+
+  const [users, setUsers] = useState([]);
   const [editUser, setEditUser] = useState(null);
 
   const [form, setForm] = useState({
     full_name: "",
     email: "",
-    mobile: ""
+    mobile: "",
   });
 
-  const token = localStorage.getItem("token");
+  const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // FETCH USERS
+  const usersPerPage = 10;
+
+  // Fetch Users
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/admin/users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
+      const res = await getUsers();
       setUsers(res.data);
     } catch (err) {
-      if (err.response?.status === 401 || err.response?.status === 403) {
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
+      console.error(err);
+
+      if (
+        err.response?.status === 401 ||
+        err.response?.status === 403
+      ) {
+        logout();
         navigate("/login");
       }
     }
   };
 
-  // OPEN MODAL
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  // Open Edit Modal
   const openEditModal = (user) => {
     setEditUser(user);
+
     setForm({
       full_name: user.full_name,
       email: user.email,
-      mobile: user.mobile
+      mobile: user.mobile,
     });
   };
 
-  // HANDLE INPUT CHANGE
+  // Handle Change
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  // UPDATE USER
+  // Update User
   const updateUser = async () => {
-    const token = localStorage.getItem("token");
-
     try {
-      await axios.put(
-        `http://127.0.0.1:8000/admin/users/${editUser.id}`,
-        form,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+      await updateUserAPI(
+        editUser.id,
+        form
       );
 
       setEditUser(null);
+
       fetchUsers();
+
+      Swal.fire({
+        icon: "success",
+        title: "Updated!",
+        text: "User updated successfully.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
     } catch (err) {
-      console.log(err.response?.data || err.message);
+      console.error(
+        err.response?.data ||
+        err.message
+      );
     }
   };
 
-  // Deactive USER
-const deactivateUser = async (id) => {
-  try {
-    await axios.patch(
-      `http://127.0.0.1:8000/admin/users/${id}/deactivate`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  // Deactivate User
+  const deactivateUser = async (id) => {
+    try {
+      await deactivateUserAPI(id);
 
-    fetchUsers();
+      fetchUsers();
 
-    Swal.fire({
-      icon: "success",
-      title: "Deactivated!",
-      text: "User has been deactivated successfully.",
-      timer: 1500,
-      showConfirmButton: false,
+      Swal.fire({
+        icon: "success",
+        title: "Deactivated!",
+        text: "User has been deactivated successfully.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+    } catch (err) {
+      console.error(
+        err.response?.data ||
+        err.message
+      );
+    }
+  };
+
+  // Activate User
+  const activateUser = async (id) => {
+    try {
+      await activateUserAPI(id);
+
+      fetchUsers();
+
+      Swal.fire({
+        icon: "success",
+        title: "Activated!",
+        text: "User has been activated successfully.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+    } catch (err) {
+      console.error(
+        err.response?.data ||
+        err.message
+      );
+    }
+  };
+
+  // Confirm Deactivate
+  const confirmDeactivate = async (id) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to deactivate this user?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Deactivate",
     });
 
-  } catch (error) {
-    console.log(error.response?.data || error.message);
-  }
-};
+    if (result.isConfirmed) {
+      await deactivateUser(id);
+    }
+  };
 
-// activate user
-const activeUSer=async(id)=>{
-  try{
-    axios.patch(
-      `http://127.0.0.1:8000/admin/users/${id}/activate`,
-      {},
-      {
-        headers:{
-          Authorization:`Bearer ${token}`
-        },
-      }
-    );
-
-    fetchUsers();
-
-    Swal.fire({
-      icon: "success",
-      title: "Activated!",
-      text: "User has been activated successfully.",
-      timer: 1500,
-      showConfirmButton: false,
+  // Confirm Activate
+  const confirmActivate = async (id) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to activate this user?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Activate",
     });
 
-  } catch (error) {
-    console.log(error.response?.data || error.message);
-  }
-};
+    if (result.isConfirmed) {
+      await activateUser(id);
+    }
+  };
 
-const confirmDeactivate = async (id) => {
-  const result = await Swal.fire({
-    title: "Are you sure?",
-    text: "Do you want to deactivate this user?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#d33",
-    cancelButtonColor: "#3085d6",
-    confirmButtonText: "Yes, Deactivate",
-  });
-
-  if (result.isConfirmed) {
-    await deactivateUser(id);
-  }
-};
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  // confirm active 
-  
-const confirmActivate = async (id) => {
-  const result = await Swal.fire({
-    title: "Are you sure?",
-    text: "Do you want to activate this user?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#d33",
-    cancelButtonColor: "#3085d6",
-    confirmButtonText: "Yes, Activate",
-  });
-
-  if (result.isConfirmed) {
-    await activeUSer(id);
-  }
-};
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-const logout = () => {
-    authService.logout();
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
+  // Logout
+  const handleLogout = () => {
+    logout();
     navigate("/login");
   };
-// Search & Pagination States
-const [search, setSearch] = useState("");
-const [currentPage, setCurrentPage] = useState(1);
 
-const usersPerPage = 10;
+  // Search
+  const filteredUsers = users.filter(
+    (u) =>
+      u.full_name
+        ?.toLowerCase()
+        .includes(search.toLowerCase()) ||
+      u.email
+        ?.toLowerCase()
+        .includes(search.toLowerCase())
+  );
 
-// Filter Users
-const filteredUsers = users.filter((user) =>
-  user.full_name?.toLowerCase().includes(search.toLowerCase()) ||
-  user.email?.toLowerCase().includes(search.toLowerCase())
-);
+  // Pagination
+  const indexOfLastUser =
+    currentPage * usersPerPage;
 
-// Pagination
-const indexOfLastUser = currentPage * usersPerPage;
-const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const indexOfFirstUser =
+    indexOfLastUser - usersPerPage;
 
-const currentUsers = filteredUsers.slice(
-  indexOfFirstUser,
-  indexOfLastUser
-);
+  const currentUsers =
+    filteredUsers.slice(
+      indexOfFirstUser,
+      indexOfLastUser
+    );
 
-const totalPages =
-  Math.ceil(filteredUsers.length / usersPerPage) || 1;
- 
+  const totalPages =
+    Math.ceil(
+      filteredUsers.length /
+      usersPerPage
+    ) || 1;
 
   return (
-   <div className="dashboard-container">
-  <div className="dashboard-header">
-    <h1>Admin Dashboard</h1>
+    <div className="dashboard-container">
+      <div className="dashboard-header">
+        <h1>Admin Dashboard</h1>
+        <button
+          className="logout-btn"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+      </div>
 
-    
-    <hr/>
-  </div>
-<div className="search-container">
-  <input
-    type="text"
-    placeholder="Search by name or email..."
-    value={search}
-    onChange={(e) => {
-      setSearch(e.target.value);
-      setCurrentPage(1);
-    }}
-    className="search-input"
-  />
-</div>
-  <div className="table-container">
+      <hr />
 
-      {/* TABLE */}
-      <table border={1}>
-        <thead>
-          <tr>
-            <th>Sr.no</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Mobile</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search by name or email..."
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setCurrentPage(1);
+          }}
+          className="search-input"
+        />
+      </div>
 
-        <tbody>
-       {currentUsers.map((u,index) => (
-            <tr key={u.id}>
-              <td>{indexOfFirstUser + index + 1}</td>
-              <td>{u.full_name}</td>
-              <td>{u.email}</td>
-              <td>{u.mobile}</td>
-               <td>{u.role}</td>
-              <td>{u.status}</td>
-              <td>
-                {u.role !== "admin" && (
-                  <>
-                 {u.status === "active" ?(
-                  <>
-                    <button  className="action-btn delete-btn" 
-                    onClick={() => confirmDeactivate(u.id)}>
-                      Deactive
-                    </button>
-
-                    <button   className="action-btn update-btn"
-                     onClick={() => openEditModal(u)}>
-                      Update
-                    </button>                   
-                  </>
-                 ):(
-                  <button className="action-btn update-btn"
-                  onClick={()=>confirmActivate(u.id)}>
-                    Activate
-                  </button>                 
-                )}
-                </>
-                )}
-              </td>
+      <div className="table-container">
+        <table border={1}>
+          <thead>
+            <tr>
+              <th>Sr.No</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-<div className="pagination">
-  <button
-    disabled={currentPage === 1}
-    onClick={() =>
-      setCurrentPage(currentPage - 1)
-    }
-  >
-    Previous
-  </button>
+          </thead>
 
-  <span>
-    Page {currentPage} of {totalPages}
-  </span>
+          <tbody>
+            {currentUsers.map(
+              (u, index) => (
+                <tr key={u.id}>
+                  <td>
+                    {indexOfFirstUser +
+                      index +
+                      1}
+                  </td>
 
-  <button
-    disabled={currentPage === totalPages}
-    onClick={() =>
-      setCurrentPage(currentPage + 1)
-    }
-  >
-    Next
-  </button>
-</div>    
-<button className="logout-btn" onClick={logout}>
-      Logout
-    </button>
-      {/* MODAL (IMPORTANT: INSIDE RETURN) */}
-      {editUser && (
-        <div className="modal-overlay">
-          <div className="modal-box">
-            <h2>Edit User</h2>
+                  <td>{u.full_name}</td>
 
-            <input
-              name="full_name"
-              value={form.full_name}
-              onChange={handleChange}
-              placeholder="Full Name"
-            />
+                  <td>{u.email}</td>
 
-            <input
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="Email"
-            />
+                  <td>{u.mobile}</td>
 
-            <input
-              name="mobile"
-              value={form.mobile}
-              onChange={handleChange}
-              placeholder="Mobile"
-            />
+                  <td>{u.role}</td>
 
+                  <td>{u.status}</td>
 
-            <div style={{ marginTop: "10px" }}>
-              <button onClick={updateUser}>Save</button>
-              <button onClick={() => setEditUser(null)}>
-                Cancel
-              </button>
+                  <td>
+                    {u.role !==
+                      "admin" && (
+                      <>
+                        {u.status ===
+                        "active" ? (
+                          <>
+                            <button
+                              className="action-btn delete-btn"
+                              onClick={() =>
+                                confirmDeactivate(
+                                  u.id
+                                )
+                              }
+                            >
+                              Deactivate
+                            </button>
+
+                            <button
+                              className="action-btn update-btn"
+                              onClick={() =>
+                                openEditModal(
+                                  u
+                                )
+                              }
+                            >
+                              Update
+                            </button>
+                          </>
+                        ) : (
+                          <button
+                            className="action-btn update-btn"
+                            onClick={() =>
+                              confirmActivate(
+                                u.id
+                              )
+                            }
+                          >
+                            Activate
+                          </button>
+                        )}
+                      </>
+                    )}
+                  </td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
+
+        <div className="pagination">
+          <button
+            disabled={
+              currentPage === 1
+            }
+            onClick={() =>
+              setCurrentPage(
+                currentPage - 1
+              )
+            }
+          >
+            Previous
+          </button>
+
+          <span>
+            Page {currentPage} of{" "}
+            {totalPages}
+          </span>
+
+          <button
+            disabled={
+              currentPage ===
+              totalPages
+            }
+            onClick={() =>
+              setCurrentPage(
+                currentPage + 1
+              )
+            }
+          >
+            Next
+          </button>
+        </div>
+
+        {editUser && (
+          <div className="modal-overlay">
+            <div className="modal-box">
+              <h2>Edit User</h2>
+
+              <input
+                name="full_name"
+                value={form.full_name}
+                onChange={
+                  handleChange
+                }
+                placeholder="Full Name"
+              />
+
+              <input
+                name="email"
+                value={form.email}
+                onChange={
+                  handleChange
+                }
+                placeholder="Email"
+              />
+
+              <input
+                name="mobile"
+                value={form.mobile}
+                onChange={
+                  handleChange
+                }
+                placeholder="Mobile"
+              />
+
+              <div
+                style={{
+                  marginTop:
+                    "10px",
+                }}
+              >
+                <button
+                  onClick={
+                    updateUser
+                  }
+                >
+                  Save
+                </button>
+
+                <button
+                  onClick={() =>
+                    setEditUser(
+                      null
+                    )
+                  }
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
     </div>
   );
