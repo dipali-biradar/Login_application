@@ -9,8 +9,6 @@ import authService from "../services/authService";
 
 function VerifyEmail() {
 
-  SMTP_EMAIL = "biradardipali860@gmail.com"
-  SMTP_PASSWORD = "bccc vbhd lpdq bsaz"
   const { token } =
     useParams();
 

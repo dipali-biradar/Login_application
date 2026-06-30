@@ -418,3 +418,238 @@
 2026-06-29 17:00:09 - auth_app - INFO - [main.py:134] - Exiting log_requests()
 2026-06-29 17:00:09 - auth_app - INFO - [database.py:23] - Exiting get_db()
 2026-06-29 17:00:09 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-29 17:27:43 - auth_app - INFO - [main.py:97] - Application shutting down...
+2026-06-29 17:27:43 - auth_app - INFO - [main.py:98] - Exiting lifespan()
+2026-06-29 17:27:45 - auth_app - INFO - [email_service.py:20] - Email service initialized with SMTP email: biradardipali860@gmail.com
+2026-06-29 17:27:45 - auth_app - INFO - [main.py:40] - Initializing database tables...
+2026-06-29 17:27:46 - auth_app - INFO - [main.py:42] - Database tables initialized successfully.
+2026-06-29 17:27:46 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-29 17:27:46 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-29 17:27:46 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-29 17:27:46 - auth_app - INFO - [main.py:48] - Entering create_admin()
+2026-06-29 17:27:46 - auth_app - INFO - [main.py:50] - Querying database for existing admin user
+2026-06-29 17:27:46 - auth_app - DEBUG - [main.py:77] - Default admin user already exists.
+2026-06-29 17:27:46 - auth_app - INFO - [main.py:78] - Exiting create_admin()
+2026-06-29 17:27:46 - auth_app - INFO - [main.py:94] - Entering lifespan()
+2026-06-29 17:27:46 - auth_app - INFO - [main.py:95] - Application starting up...
+2026-06-29 17:27:51 - auth_app - INFO - [main.py:97] - Application shutting down...
+2026-06-29 17:27:51 - auth_app - INFO - [main.py:98] - Exiting lifespan()
+2026-06-29 17:27:52 - auth_app - INFO - [email_service.py:20] - Email service initialized with SMTP email: biradardipali860@gmail.com
+2026-06-29 17:27:52 - auth_app - INFO - [main.py:40] - Initializing database tables...
+2026-06-29 17:27:53 - auth_app - INFO - [main.py:42] - Database tables initialized successfully.
+2026-06-29 17:27:53 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-29 17:27:53 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-29 17:27:53 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-29 17:27:53 - auth_app - INFO - [main.py:48] - Entering create_admin()
+2026-06-29 17:27:53 - auth_app - INFO - [main.py:50] - Querying database for existing admin user
+2026-06-29 17:27:53 - auth_app - DEBUG - [main.py:77] - Default admin user already exists.
+2026-06-29 17:27:53 - auth_app - INFO - [main.py:78] - Exiting create_admin()
+2026-06-29 17:27:53 - auth_app - INFO - [main.py:94] - Entering lifespan()
+2026-06-29 17:27:53 - auth_app - INFO - [main.py:95] - Application starting up...
+2026-06-29 18:20:30 - auth_app - INFO - [main.py:97] - Application shutting down...
+2026-06-29 18:20:30 - auth_app - INFO - [main.py:98] - Exiting lifespan()
+2026-06-30 10:53:26 - auth_app - INFO - [email_service.py:20] - Email service initialized with SMTP email: biradardipali860@gmail.com
+2026-06-30 10:53:26 - auth_app - INFO - [main.py:40] - Initializing database tables...
+2026-06-30 10:53:26 - auth_app - INFO - [main.py:42] - Database tables initialized successfully.
+2026-06-30 10:53:26 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-30 10:53:26 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-30 10:53:26 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-30 10:53:26 - auth_app - INFO - [main.py:48] - Entering create_admin()
+2026-06-30 10:53:26 - auth_app - INFO - [main.py:50] - Querying database for existing admin user
+2026-06-30 10:53:26 - auth_app - DEBUG - [main.py:77] - Default admin user already exists.
+2026-06-30 10:53:26 - auth_app - INFO - [main.py:78] - Exiting create_admin()
+2026-06-30 10:53:27 - auth_app - INFO - [email_service.py:20] - Email service initialized with SMTP email: biradardipali860@gmail.com
+2026-06-30 10:53:27 - auth_app - INFO - [main.py:40] - Initializing database tables...
+2026-06-30 10:53:27 - auth_app - INFO - [main.py:42] - Database tables initialized successfully.
+2026-06-30 10:53:27 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-30 10:53:27 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-30 10:53:27 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-30 10:53:27 - auth_app - INFO - [main.py:48] - Entering create_admin()
+2026-06-30 10:53:27 - auth_app - INFO - [main.py:50] - Querying database for existing admin user
+2026-06-30 10:53:27 - auth_app - DEBUG - [main.py:77] - Default admin user already exists.
+2026-06-30 10:53:27 - auth_app - INFO - [main.py:78] - Exiting create_admin()
+2026-06-30 10:53:27 - auth_app - INFO - [main.py:94] - Entering lifespan()
+2026-06-30 10:53:27 - auth_app - INFO - [main.py:95] - Application starting up...
+2026-06-30 14:53:10 - auth_app - INFO - [email_service.py:20] - Email service initialized with SMTP email: biradardipali860@gmail.com
+2026-06-30 14:53:10 - auth_app - INFO - [main.py:40] - Initializing database tables...
+2026-06-30 14:53:10 - auth_app - INFO - [main.py:42] - Database tables initialized successfully.
+2026-06-30 14:53:10 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-30 14:53:10 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-30 14:53:10 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-30 14:53:10 - auth_app - INFO - [main.py:48] - Entering create_admin()
+2026-06-30 14:53:10 - auth_app - INFO - [main.py:50] - Querying database for existing admin user
+2026-06-30 14:53:10 - auth_app - DEBUG - [main.py:77] - Default admin user already exists.
+2026-06-30 14:53:10 - auth_app - INFO - [main.py:78] - Exiting create_admin()
+2026-06-30 14:53:11 - auth_app - INFO - [email_service.py:20] - Email service initialized with SMTP email: biradardipali860@gmail.com
+2026-06-30 14:53:11 - auth_app - INFO - [main.py:40] - Initializing database tables...
+2026-06-30 14:53:11 - auth_app - INFO - [main.py:42] - Database tables initialized successfully.
+2026-06-30 14:53:11 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-30 14:53:11 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-30 14:53:11 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-30 14:53:11 - auth_app - INFO - [main.py:48] - Entering create_admin()
+2026-06-30 14:53:11 - auth_app - INFO - [main.py:50] - Querying database for existing admin user
+2026-06-30 14:53:11 - auth_app - DEBUG - [main.py:77] - Default admin user already exists.
+2026-06-30 14:53:11 - auth_app - INFO - [main.py:78] - Exiting create_admin()
+2026-06-30 14:53:11 - auth_app - INFO - [main.py:94] - Entering lifespan()
+2026-06-30 14:53:11 - auth_app - INFO - [main.py:95] - Application starting up...
+2026-06-30 15:40:28 - auth_app - INFO - [main.py:97] - Application shutting down...
+2026-06-30 15:40:28 - auth_app - INFO - [main.py:98] - Exiting lifespan()
+2026-06-30 15:40:31 - auth_app - INFO - [email_service.py:20] - Email service initialized with SMTP email: biradardipali860@gmail.com
+2026-06-30 15:40:31 - auth_app - INFO - [main.py:40] - Initializing database tables...
+2026-06-30 15:40:32 - auth_app - INFO - [main.py:42] - Database tables initialized successfully.
+2026-06-30 15:40:32 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-30 15:40:32 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-30 15:40:32 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-30 15:40:32 - auth_app - INFO - [main.py:48] - Entering create_admin()
+2026-06-30 15:40:32 - auth_app - INFO - [main.py:50] - Querying database for existing admin user
+2026-06-30 15:40:32 - auth_app - DEBUG - [main.py:77] - Default admin user already exists.
+2026-06-30 15:40:32 - auth_app - INFO - [main.py:78] - Exiting create_admin()
+2026-06-30 15:40:32 - auth_app - INFO - [email_service.py:20] - Email service initialized with SMTP email: biradardipali860@gmail.com
+2026-06-30 15:40:32 - auth_app - INFO - [main.py:40] - Initializing database tables...
+2026-06-30 15:40:32 - auth_app - INFO - [main.py:42] - Database tables initialized successfully.
+2026-06-30 15:40:32 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-30 15:40:32 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-30 15:40:32 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-30 15:40:32 - auth_app - INFO - [main.py:48] - Entering create_admin()
+2026-06-30 15:40:32 - auth_app - INFO - [main.py:50] - Querying database for existing admin user
+2026-06-30 15:40:32 - auth_app - DEBUG - [main.py:77] - Default admin user already exists.
+2026-06-30 15:40:32 - auth_app - INFO - [main.py:78] - Exiting create_admin()
+2026-06-30 15:40:32 - auth_app - INFO - [main.py:94] - Entering lifespan()
+2026-06-30 15:40:32 - auth_app - INFO - [main.py:95] - Application starting up...
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:123] - Incoming request: OPTIONS http://127.0.0.1:8000/register
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:133] - Request completed: OPTIONS http://127.0.0.1:8000/register | Status: 200 | Duration: 0.0039s
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:123] - Incoming request: POST http://127.0.0.1:8000/register
+2026-06-30 16:35:51 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-30 16:35:51 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:358] - Entering register()
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:359] - Registration attempt started for email: efg@gmail.com
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:361] - Querying for existing email in database
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:369] - Formatting user full name
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:376] - Generating verification token
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:379] - Hashing password for registration
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:396] - Adding new user to session
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:398] - Committing user registration to database
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:400] - Refreshing registered user details
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:402] - User registered successfully in database: efg@gmail.com
+2026-06-30 16:35:51 - auth_app - INFO - [main.py:404] - Triggering verification email send
+2026-06-30 16:35:51 - auth_app - INFO - [email_service.py:27] - Entering send_verification_email()
+2026-06-30 16:35:51 - auth_app - DEBUG - [email_service.py:44] - Attempting to send verification email to efg@gmail.com
+2026-06-30 16:35:55 - auth_app - INFO - [email_service.py:48] - Verification email sent successfully to efg@gmail.com
+2026-06-30 16:35:55 - auth_app - INFO - [main.py:406] - Verification email request triggered for: efg@gmail.com
+2026-06-30 16:35:55 - auth_app - INFO - [main.py:412] - Exiting register()
+2026-06-30 16:35:55 - auth_app - INFO - [main.py:133] - Request completed: POST http://127.0.0.1:8000/register | Status: 200 | Duration: 4.4006s
+2026-06-30 16:35:55 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:35:55 - auth_app - INFO - [database.py:23] - Exiting get_db()
+2026-06-30 16:35:55 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-30 16:44:03 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:44:03 - auth_app - INFO - [main.py:123] - Incoming request: GET http://127.0.0.1:8000/
+2026-06-30 16:44:03 - auth_app - INFO - [main.py:169] - Entering root()
+2026-06-30 16:44:03 - auth_app - DEBUG - [main.py:170] - Root endpoint accessed
+2026-06-30 16:44:03 - auth_app - INFO - [main.py:174] - Exiting root()
+2026-06-30 16:44:03 - auth_app - INFO - [main.py:133] - Request completed: GET http://127.0.0.1:8000/ | Status: 200 | Duration: 0.0026s
+2026-06-30 16:44:03 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:44:03 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:44:03 - auth_app - INFO - [main.py:123] - Incoming request: GET http://127.0.0.1:8000/favicon.ico
+2026-06-30 16:44:03 - auth_app - WARNING - [main.py:131] - Request completed: GET http://127.0.0.1:8000/favicon.ico | Status: 404 | Duration: 0.0014s
+2026-06-30 16:44:03 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:44:03 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:44:03 - auth_app - INFO - [main.py:123] - Incoming request: GET http://127.0.0.1:8000/.well-known/appspecific/com.chrome.devtools.json
+2026-06-30 16:44:03 - auth_app - WARNING - [main.py:131] - Request completed: GET http://127.0.0.1:8000/.well-known/appspecific/com.chrome.devtools.json | Status: 404 | Duration: 0.0013s
+2026-06-30 16:44:03 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:44:13 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:44:13 - auth_app - INFO - [main.py:123] - Incoming request: GET http://127.0.0.1:8000/register
+2026-06-30 16:44:13 - auth_app - WARNING - [main.py:131] - Request completed: GET http://127.0.0.1:8000/register | Status: 405 | Duration: 0.0013s
+2026-06-30 16:44:13 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:44:13 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:44:13 - auth_app - INFO - [main.py:123] - Incoming request: GET http://127.0.0.1:8000/.well-known/appspecific/com.chrome.devtools.json
+2026-06-30 16:44:13 - auth_app - WARNING - [main.py:131] - Request completed: GET http://127.0.0.1:8000/.well-known/appspecific/com.chrome.devtools.json | Status: 404 | Duration: 0.0007s
+2026-06-30 16:44:13 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:44:44 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:44:44 - auth_app - INFO - [main.py:123] - Incoming request: OPTIONS http://127.0.0.1:8000/login
+2026-06-30 16:44:44 - auth_app - INFO - [main.py:133] - Request completed: OPTIONS http://127.0.0.1:8000/login | Status: 200 | Duration: 0.0027s
+2026-06-30 16:44:44 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:44:44 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:44:44 - auth_app - INFO - [main.py:123] - Incoming request: POST http://127.0.0.1:8000/login
+2026-06-30 16:44:44 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-30 16:44:44 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-30 16:44:44 - auth_app - INFO - [main.py:478] - Entering login()
+2026-06-30 16:44:44 - auth_app - INFO - [main.py:479] - Login attempt initiated for email: admin@gmail.com
+2026-06-30 16:44:44 - auth_app - INFO - [main.py:481] - Querying user email from database
+2026-06-30 16:44:44 - auth_app - INFO - [main.py:496] - Checking user email verification status
+2026-06-30 16:44:44 - auth_app - INFO - [main.py:505] - Checking user active status
+2026-06-30 16:44:44 - auth_app - INFO - [main.py:514] - Verifying input password hash
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:524] - Updating user last login timestamp
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:526] - Committing last login time change to database
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:528] - Login successful for user: admin@gmail.com
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:530] - Generating JWT access token
+2026-06-30 16:44:45 - auth_app - DEBUG - [auth.py:65] - Creating access token for email: admin@gmail.com
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:548] - Exiting login()
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:133] - Request completed: POST http://127.0.0.1:8000/login | Status: 200 | Duration: 0.1948s
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:44:45 - auth_app - INFO - [database.py:23] - Exiting get_db()
+2026-06-30 16:44:45 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:123] - Incoming request: OPTIONS http://127.0.0.1:8000/admin/users
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:123] - Incoming request: OPTIONS http://127.0.0.1:8000/admin/users
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:133] - Request completed: OPTIONS http://127.0.0.1:8000/admin/users | Status: 200 | Duration: 0.0035s
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:133] - Request completed: OPTIONS http://127.0.0.1:8000/admin/users | Status: 200 | Duration: 0.0038s
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:123] - Incoming request: GET http://127.0.0.1:8000/admin/users
+2026-06-30 16:44:45 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-30 16:44:45 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-30 16:44:45 - auth_app - DEBUG - [auth.py:71] - Decoding JWT access token
+2026-06-30 16:44:45 - auth_app - INFO - [auth.py:117] - JWT token authenticated successfully for user: admin@gmail.com
+2026-06-30 16:44:45 - auth_app - INFO - [auth.py:131] - Admin access granted for user: admin@gmail.com
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:184] - Entering get_all_users()
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:185] - Admin admin@gmail.com requested list of all users.
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:187] - Querying all users from database
+2026-06-30 16:44:45 - auth_app - DEBUG - [main.py:189] - Retrieved 10 users.
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:201] - Exiting get_all_users()
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:133] - Request completed: GET http://127.0.0.1:8000/admin/users | Status: 200 | Duration: 0.0199s
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:44:45 - auth_app - INFO - [database.py:23] - Exiting get_db()
+2026-06-30 16:44:45 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:121] - Entering log_requests()
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:123] - Incoming request: GET http://127.0.0.1:8000/admin/users
+2026-06-30 16:44:45 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-30 16:44:45 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-30 16:44:45 - auth_app - DEBUG - [auth.py:71] - Decoding JWT access token
+2026-06-30 16:44:45 - auth_app - INFO - [auth.py:117] - JWT token authenticated successfully for user: admin@gmail.com
+2026-06-30 16:44:45 - auth_app - INFO - [auth.py:131] - Admin access granted for user: admin@gmail.com
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:184] - Entering get_all_users()
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:185] - Admin admin@gmail.com requested list of all users.
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:187] - Querying all users from database
+2026-06-30 16:44:45 - auth_app - DEBUG - [main.py:189] - Retrieved 10 users.
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:201] - Exiting get_all_users()
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:133] - Request completed: GET http://127.0.0.1:8000/admin/users | Status: 200 | Duration: 0.0166s
+2026-06-30 16:44:45 - auth_app - INFO - [main.py:134] - Exiting log_requests()
+2026-06-30 16:44:45 - auth_app - INFO - [database.py:23] - Exiting get_db()
+2026-06-30 16:44:45 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-30 18:15:04 - auth_app - INFO - [email_service.py:20] - Email service initialized with SMTP email: biradardipali860@gmail.com
+2026-06-30 18:15:04 - auth_app - INFO - [main.py:40] - Initializing database tables...
+2026-06-30 18:15:04 - auth_app - INFO - [main.py:42] - Database tables initialized successfully.
+2026-06-30 18:15:04 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-30 18:15:04 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-30 18:15:04 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-30 18:15:04 - auth_app - INFO - [main.py:48] - Entering create_admin()
+2026-06-30 18:15:04 - auth_app - INFO - [main.py:50] - Querying database for existing admin user
+2026-06-30 18:15:04 - auth_app - DEBUG - [main.py:77] - Default admin user already exists.
+2026-06-30 18:15:04 - auth_app - INFO - [main.py:78] - Exiting create_admin()
+2026-06-30 18:15:05 - auth_app - INFO - [email_service.py:20] - Email service initialized with SMTP email: biradardipali860@gmail.com
+2026-06-30 18:15:05 - auth_app - INFO - [main.py:40] - Initializing database tables...
+2026-06-30 18:15:05 - auth_app - INFO - [main.py:42] - Database tables initialized successfully.
+2026-06-30 18:15:05 - auth_app - INFO - [database.py:18] - Entering get_db()
+2026-06-30 18:15:05 - auth_app - INFO - [database.py:21] - Database session created successfully
+2026-06-30 18:15:05 - auth_app - INFO - [database.py:28] - Closing database session
+2026-06-30 18:15:05 - auth_app - INFO - [main.py:48] - Entering create_admin()
+2026-06-30 18:15:05 - auth_app - INFO - [main.py:50] - Querying database for existing admin user
+2026-06-30 18:15:05 - auth_app - DEBUG - [main.py:77] - Default admin user already exists.
+2026-06-30 18:15:05 - auth_app - INFO - [main.py:78] - Exiting create_admin()
+2026-06-30 18:15:05 - auth_app - INFO - [main.py:94] - Entering lifespan()
+2026-06-30 18:15:05 - auth_app - INFO - [main.py:95] - Application starting up...
